@@ -44,7 +44,7 @@ function displayProducts(products) {
     <div class="col">
       <div class="card h-100">
         <img 
-          src="${product.imageUrl || 'https://via.placeholder.com/200x200?text=No+Image'}"
+          src="${product.image || 'https://via.placeholder.com/200x200?text=No+Image'}"
           alt="${product.title || 'Product'}"
           class="card-img-top"
           style="object-fit: cover; height: 200px;"
@@ -64,15 +64,10 @@ function displayProducts(products) {
   );
 }
 
-fetch('https://cors-anywhere.herokuapp.com/https://api.escuelajs.co/api/v1/products')
+fetch('https://fakestoreapi.com/products')
   .then(res => res.json())
   .then(products => {
-    allProducts = products.map(p => ({
-      id: p.id,
-      title: p.title,
-      price: p.price,
-      imageUrl: Array.isArray(p.images) && p.images.length ? p.images[0] : ''
-    }));
+    allProducts = products;
     displayProducts(allProducts);
   })
   .catch(err => {
